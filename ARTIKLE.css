@@ -45,7 +45,7 @@ header p {
 }
 
 #user-button {
-  background: #e0b3ff; /* Morado más claro */
+  background: #e0b3ff;
   border: none;
   color: white;
   font-size: 1.5em;
@@ -67,7 +67,7 @@ header p {
   position: absolute;
   top: 40px;
   left: 0;
-  background-color: #7f00b2; /* Color morado */
+  background-color: #7f00b2; 
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -89,7 +89,7 @@ header p {
 
 #tabs {
   display: none; /* Ocultar las pestañas por defecto */
-  background-color: #7f00b2; /* Color morado */
+  background-color: #7f00b2; 
   padding: 10px;
   border-radius: 5px;
   flex-direction: column; /* Mostrar las pestañas de forma vertical */
@@ -106,12 +106,12 @@ header p {
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
-  background-color: #9b2dce; /* Color morado más claro */
+  background-color: #9b2dce; 
   display: block; /* Asegurar que los enlaces ocupen todo el ancho */
 }
 
 #tabs a:hover, #tabs a.active {
-  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+  background-color: #ae41e0; 
 }
 
 .menu-icon {
@@ -141,7 +141,7 @@ header p {
 }
 
 .menu-icon:hover div {
-  background-color: #ae41e0; /* Cambia el color al pasar el ratón */
+  background-color: #ae41e0; 
 }
 
 #container {
@@ -179,7 +179,7 @@ form label, form input, form button {
 #home h3 {
   margin-top: 20px;
   font-size: 1.5em;
-  color: #7f00b2; /* Color morado */
+  color: #7f00b2; 
 }
 
 #home ul {
@@ -221,12 +221,12 @@ footer .social-media a {
   margin: 0 10px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #9b2dce; /* Color morado más claro */
+  background-color: #9b2dce; 
   display: inline-block;
 }
 
 footer .social-media a:hover {
-  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+  background-color: #ae41e0; 
 }
 
 footer .social-media i {
@@ -241,7 +241,7 @@ footer .social-media i {
 }
 
 .category-button {
-  background-color: #7f00b2; /* Color morado */
+  background-color: #7f00b2; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -251,7 +251,7 @@ footer .social-media i {
 }
 
 .category-button:hover {
-  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+  background-color: #ae41e0;
 }
 #contact {
   padding: 30px;
@@ -280,7 +280,7 @@ footer .social-media i {
 }
 
 #contact-form button {
-  background-color: #7f00b2; /* Color morado */
+  background-color: #7f00b2; 
   color: white;
   border: none;
   padding: 10px;
@@ -290,7 +290,7 @@ footer .social-media i {
 }
 
 #contact-form button:hover {
-  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+  background-color: #ae41e0; 
 }
 
 /* Estilos para el menú de pestañas en dispositivos móviles */
@@ -311,3 +311,131 @@ footer .social-media i {
     border-bottom: 1px solid #ccc;
   }
 }
+/* Mostrar el menú de usuario cuando se active */
+#auth-menu.show {
+  display: block;
+}
+
+/* Mostrar el menú de pestañas en dispositivos móviles cuando se active */
+#tabs.show {
+  display: flex;
+}
+#reviews-list {
+  margin-top: 20px;
+}
+
+#reviews-list .review {
+  background-color: #f3f3f3;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#review-form-container {
+  margin-top: 20px;
+}
+
+#review-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#review-form button {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#add-review-button {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#add-review-button:hover {
+  background-color: #ae41e0;
+}
+
+.review strong {
+  color: #7f00b2; /* Color del nombre del usuario */
+  display: block;
+  margin-bottom: 5px;
+}
+#register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#register-form label {
+  font-weight: bold;
+}
+
+#register-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#register-form button {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#register-form button:hover {
+  background-color: #ae41e0;
+}
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#login-form label {
+  font-weight: bold;
+}
+
+#login-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#login-form button {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-form button:hover {
+  background-color: #ae41e0;
+}
+
