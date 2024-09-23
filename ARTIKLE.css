@@ -1,0 +1,313 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Muli', sans-serif; /* Cambiar la fuente a Muli */
+  background-color: #f3f3f3;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: #7f00b2; /* Color morado */
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+header p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+#home-link {
+  text-decoration: none;
+  color: white;
+}
+
+#home-link:hover {
+  text-decoration: underline;
+}
+
+#user-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#user-button {
+  background: #e0b3ff; /* Morado más claro */
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+#user-button:hover {
+  background: #d1a3ff; /* Morado aún más claro al pasar el ratón */
+}
+
+#auth-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #7f00b2; /* Color morado */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#auth-menu li {
+  margin: 0;
+}
+
+#auth-menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+#auth-menu li a:hover {
+  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+}
+
+#tabs {
+  display: none; /* Ocultar las pestañas por defecto */
+  background-color: #7f00b2; /* Color morado */
+  padding: 10px;
+  border-radius: 5px;
+  flex-direction: column; /* Mostrar las pestañas de forma vertical */
+  margin-bottom: 20px;
+}
+
+#tabs li {
+  list-style: none;
+  margin-bottom: 10px; /* Espacio entre las pestañas */
+}
+
+#tabs a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #9b2dce; /* Color morado más claro */
+  display: block; /* Asegurar que los enlaces ocupen todo el ancho */
+}
+
+#tabs a:hover, #tabs a.active {
+  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+}
+
+.menu-icon {
+  position: fixed; /* Fija el botón en la parte superior */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  right: 20px; /* Ajusta la distancia desde la derecha */
+  width: 35px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  background-color: #7f00b2; /* Fondo morado */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade una sombra para darle profundidad */
+  z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.menu-icon div {
+  width: 100%;
+  height: 4px;
+  background-color: white; /* Líneas blancas */
+  border-radius: 2px;
+  transition: all 0.3s ease; /* Añade una transición suave */
+}
+
+.menu-icon:hover div {
+  background-color: #ae41e0; /* Cambia el color al pasar el ratón */
+}
+
+#container {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.content {
+  display: none;
+}
+
+.content.show {
+  display: block;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label, form input, form button {
+  margin-bottom: 10px;
+}
+
+#home h3 {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #7f00b2; /* Color morado */
+}
+
+#home ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#home ul li {
+  background-color: #f3f3f3;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#home ul li strong {
+  color: #333;
+}
+
+footer {
+  background-color: #7f00b2; /* Fondo morado */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .contact-info {
+  margin-bottom: 10px;
+}
+
+footer .social-media a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #9b2dce; /* Color morado más claro */
+  display: inline-block;
+}
+
+footer .social-media a:hover {
+  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+}
+
+footer .social-media i {
+  margin-right: 5px;
+}
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.category-button {
+  background-color: #7f00b2; /* Color morado */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+}
+#contact {
+  padding: 30px;
+  box-sizing: border-box;
+  overflow: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#contact-form label {
+  font-weight: bold;
+}
+
+#contact-form input,
+#contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%; /* Asegura que los inputs ocupen todo el ancho del contenedor */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+#contact-form button {
+  background-color: #7f00b2; /* Color morado */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+}
+
+/* Estilos para el menú de pestañas en dispositivos móviles */
+@media (max-width: 768px) {
+  #tabs {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #tabs.show {
+    display: flex;
+  }
+
+  #tabs a {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+}
