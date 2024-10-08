@@ -7,15 +7,20 @@
   <link rel="stylesheet" href="ARTIKLE.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <header>
     <div id="user-menu">
       <button id="user-button"><i class="fas fa-user"></i></button>
-      <ul id="auth-menu" class="content">
+      <ul id="auth-menu" style="display: none;">
         <li><a href="#login">Iniciar Sesión</a></li>
         <li><a href="#register">Registrarse</a></li>
       </ul>
+      <!-- Mensaje de bienvenida -->
+      <span id="welcomeMessage" style="display: none;"></span>
+    </div>
+    
     </div>
     <a href="#home" id="home-link">
       <h1>ARTIKLE STORE</h1>
@@ -36,17 +41,12 @@
   </ul>
   <div id="container">
     <!-- Sección de reseñas -->
-    <div class="content" id="reviews">
-      <h2>Reseñas</h2>
-      <div id="reviews-list">
-        <!-- Aquí se mostrarán las reseñas aprobadas -->
-        <div class="review">
-          <strong>Zanthy:</strong> La mejor asesoria
-        </div>
-        <div class="review">
-          <strong>Malena26:</strong> Gracias por el apoyo
-        </div>
-      </div>
+   <div class="content" id="reviews">
+  <h2>Reseñas</h2>
+  <div id="reviews-list">
+    <!-- Aquí se mostrarán las reseñas aprobadas -->
+ 
+</div>
       <button id="add-review-button">Añadir Reseña</button>
       <div id="review-form-container" style="display: none;">
         <!-- Formulario para dejar una reseña -->
@@ -145,6 +145,7 @@
     <!-- Sección del blog -->
     <div class="content" id="blog">
       <h2>Blog</h2>
+      <div id="news-list"></div>
       <p>Nos encontramos trabajando para su servicio.</p>
     </div>
   </div>

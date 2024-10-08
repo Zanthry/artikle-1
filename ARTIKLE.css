@@ -439,3 +439,35 @@ footer .social-media i {
   background-color: #ae41e0;
 }
 
+#welcome {
+  text-align: center;
+}
+
+#welcomeMessage {
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.review {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+}
+
+.review button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.review button:hover {
+  background-color: #ff1a1a;
+}
