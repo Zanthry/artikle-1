@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="ARTIKLE.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
   <header>
@@ -17,54 +16,36 @@
         <li><a href="#login">Iniciar Sesión</a></li>
         <li><a href="#register">Registrarse</a></li>
       </ul>
-      <!-- Mensaje de bienvenida -->
       <span id="welcomeMessage" style="display: none;"></span>
-    </div>
-    
     </div>
     <a href="#home" id="home-link">
       <h1>ARTIKLE STORE</h1>
     </a>
     <p>LA MEJOR ASESORÍA PARA LA MEJOR TECNOLOGÍA</p>
   </header>
+  
   <div id="toggleTabs" class="menu-icon">
     <div></div>
     <div></div>
     <div></div>
   </div>
+  
   <ul id="tabs">
     <li><a href="#home" class="active">Inicio</a></li>
     <li><a href="#categories">Categorías</a></li>
     <li><a href="#contact">Contacto</a></li>
-    <li><a href="#blog">Blog</a></li>
     <li><a href="#reviews">Reseñas</a></li>
+    <li style="display: none;"><a href="#users">Usuarios</a></li> <!-- Pestaña de Usuarios -->
   </ul>
+  
   <div id="container">
-    <!-- Sección de reseñas -->
-   <div class="content" id="reviews">
-  <h2>Reseñas</h2>
-  <div id="reviews-list">
-    <!-- Aquí se mostrarán las reseñas aprobadas -->
- 
-</div>
-      <button id="add-review-button">Añadir Reseña</button>
-      <div id="review-form-container" style="display: none;">
-        <!-- Formulario para dejar una reseña -->
-        <h3>Deja tu reseña</h3>
-        <form id="review-form">
-          <label for="review-text">Tu reseña:</label>
-          <textarea id="review-text" name="review-text" rows="4" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-    </div>
-    
     <!-- Sección de inicio -->
     <div class="content show" id="home">
       <h2>Inicio</h2>
       <img src="BANER.jpg" alt="Imagen de Inicio">
-      <p>Bienvenido a ARTIKLE STORE. Aquí encontrarás los mejores productos y asesorías en tecnología.</p>
-      <h3>LOS COMPONENTES QUE NUNCA DEBES OLVIDAR AL ARMAR TU PRIMER COMPUTADOR</h3>
+      
+      <p id="welcome-text">Bienvenido a ARTIKLE STORE. Aquí encontrarás los mejores productos y asesorías en tecnología.</p>
+      <h3 id="welcome-title">LOS COMPONENTES QUE NUNCA DEBES OLVIDAR AL ARMAR TU PRIMER COMPUTADOR</h3>
       <ul>
         <li><strong>CPU:</strong> Son los cerebros del computador, responsables de ejecutar instrucciones y procesar datos.</li>
         <li><strong>GPU:</strong> Estas tarjetas gráficas se encargan de renderizar imágenes y videos.</li>
@@ -75,11 +56,27 @@
       </ul>
     </div>
 
+    <!-- Sección de reseñas -->
+    <div class="content" id="reviews">
+      <h2>Reseñas</h2>
+      <div id="reviews-list">
+        <!-- Aquí se mostrarán las reseñas aprobadas -->
+      </div>
+      <button id="add-review-button">Añadir Reseña</button>
+      <div id="review-form-container" style="display: none;">
+        <h3>Deja tu reseña</h3>
+        <form id="review-form">
+          <label for="review-text">Tu reseña:</label>
+          <textarea id="review-text" name="review-text" rows="4" required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Sección de registro -->
     <div class="content" id="register">
       <h2>Registrarse</h2>
       <form id="register-form">
-        <!-- Campos para registro -->
         <label for="fullname">Nombre Completo:</label>
         <input type="text" id="fullname" name="fullname"><br>
         <label for="email">Correo Electrónico:</label>
@@ -110,7 +107,6 @@
     <div class="content" id="categories">
       <h2>Categorías</h2>
       <div class="category-buttons">
-        <!-- Botones para cada categoría -->
         <button class="category-button">CPU</button>
         <button class="category-button">GPU</button>
         <button class="category-button">RAM</button>
@@ -142,11 +138,10 @@
       </form>
     </div>
 
-    <!-- Sección del blog -->
-    <div class="content" id="blog">
-      <h2>Blog</h2>
-      <div id="news-list"></div>
-      <p>Nos encontramos trabajando para su servicio.</p>
+    <!-- Sección de usuarios -->
+    <div class="content" id="users">
+      <h2>Usuarios Registrados</h2>
+      <div id="users-list"></div> <!-- Aquí se mostrarán los usuarios -->
     </div>
   </div>
 
@@ -166,3 +161,4 @@
   <!-- Enlace al archivo JavaScript -->
   <script src="ARTIKLE.js"></script>
 </body>
+</html>

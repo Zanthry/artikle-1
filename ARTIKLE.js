@@ -135,13 +135,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (isLoggedIn === 'true') {
     mostrarMensajeBienvenida(loggedInUser, loggedInUsername);
     mostrarOpcionCerrarSesion(); // Mostrar la opción de cerrar sesión
+
+    // Mostrar pestaña de usuarios solo para administradores
+    if (localStorage.getItem('userRole') === 'admin') {
+      document.querySelector('#tabs li:nth-child(5)').style.display = 'list-item'; // Mostrar la pestaña de Usuarios
+      cargarUsuarios(); // Llamar a la función para cargar usuarios
+    } else {
+      document.querySelector('#tabs li:nth-child(5)').style.display = 'none'; // Ocultar si no es admin
+    }
   }
 
   // Obtener las reseñas de localStorage
-  const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-  reviews.forEach(review => {
-    agregarReseñaAlDOM(review);
-  });
+  cargarReseñasDesdeLocalStorage();
 
   // Manejar el botón para añadir reseña
   const addReviewButton = document.getElementById('add-review-button');
@@ -181,6 +186,72 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('Debes iniciar sesión para dejar una reseña.');
     }
   });
+
+  // Lógica de carga de usuarios para administradores
+  function cargarUsuarios() {
+    const usersList = document.getElementById('users-list');
+    usersList.innerHTML = ''; // Limpiar la lista antes de agregar nuevos usuarios
+
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    
+    if (storedUsers.length === 0) {
+      usersList.innerHTML = '<p>No hay usuarios registrados.</p>';
+    } else {
+      const userTable = document.createElement('table');
+      userTable.innerHTML = `
+        <thead>
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Nombre de Usuario</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th> <!-- Nueva columna para acciones -->
+          </tr>
+        </thead>
+        <tbody>
+          ${storedUsers.map(user => `
+            <tr>
+              <td>${user.fullname}</td>
+              <td>${user.username}</td>
+              <td>${user.email}</td>
+              <td>
+                <select class="role-select" data-username="${user.username}">
+                  <option value="user" ${user.role === 'user' ? 'selected' : ''}>Usuario</option>
+                  <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Administrador</option>
+                </select>
+              </td>
+              <td>
+                <button class="save-role-button" data-username="${user.username}">Guardar Rol</button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+      usersList.appendChild(userTable);
+      
+      // Añadir eventos a los botones de guardar rol
+      document.querySelectorAll('.save-role-button').forEach(button => {
+        button.addEventListener('click', function() {
+          const username = this.dataset.username;
+          const roleSelect = document.querySelector(`.role-select[data-username="${username}"]`);
+          const newRole = roleSelect.value;
+          editarRolUsuario(username, newRole);
+        });
+      });
+    }
+  }
+
+  // Función para editar el rol de un usuario
+  function editarRolUsuario(username, newRole) {
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const userIndex = storedUsers.findIndex(user => user.username === username);
+    
+    if (userIndex !== -1) {
+      storedUsers[userIndex].role = newRole; // Actualizar el rol
+      localStorage.setItem('users', JSON.stringify(storedUsers)); // Guardar en localStorage
+      alert(`Rol de ${username} actualizado a ${newRole}`);
+    }
+  }
 });
 
 // Función para mostrar la opción "Cerrar sesión"

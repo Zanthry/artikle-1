@@ -1,9 +1,18 @@
+:root {
+  --color-primary: #5e0085; /* Color morado oscuro */
+  --color-primary-light: #7a00a2; /* Color morado claro */
+  --color-primary-dark: #6c0091; /* Color morado más oscuro */
+  --color-background: #f3f3f3;
+  --color-white: white;
+  --color-grey: #ccc;
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Muli', sans-serif; /* Cambiar la fuente a Muli */
-  background-color: #f3f3f3;
+  font-family: 'Muli', sans-serif;
+  background-color: var(--color-background);
   color: #333;
   margin: 0;
   padding: 0;
@@ -11,27 +20,21 @@ body {
 
 header {
   text-align: center;
-  background-color: #7f00b2; /* Color morado */
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
   position: relative;
 }
 
-header h1 {
+header h1, header p {
   margin: 0;
-  font-size: 2em;
-}
-
-header p {
-  margin: 0;
-  font-size: 1.2em;
 }
 
 #home-link {
   text-decoration: none;
-  color: white;
+  color: var(--color-white);
 }
 
 #home-link:hover {
@@ -45,18 +48,18 @@ header p {
 }
 
 #user-button {
-  background: #e0b3ff;
+  background: var(--color-primary-light);
   border: none;
-  color: white;
+  color: var(--color-white);
   font-size: 1.5em;
   cursor: pointer;
   padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s ease; /* Transición suave */
+  transition: background-color 0.3s ease;
 }
 
 #user-button:hover {
-  background: #d1a3ff; /* Morado aún más claro al pasar el ratón */
+  background: var(--color-primary-dark);
 }
 
 #auth-menu {
@@ -67,57 +70,52 @@ header p {
   position: absolute;
   top: 40px;
   left: 0;
-  background-color: #7f00b2; 
+  background-color: var(--color-primary);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#auth-menu li {
-  margin: 0;
-}
-
 #auth-menu li a {
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   padding: 10px 15px;
   display: block;
 }
 
 #auth-menu li a:hover {
-  background-color: #ae41e0; /* Color morado más claro al pasar el ratón */
+  background-color: var(--color-primary-light);
 }
 
 #tabs {
-  display: none; /* Ocultar las pestañas por defecto */
-  background-color: #7f00b2; 
+  display: none;
+  background-color: var(--color-primary);
   padding: 10px;
   border-radius: 5px;
-  flex-direction: column; /* Mostrar las pestañas de forma vertical */
   margin-bottom: 20px;
 }
 
 #tabs li {
   list-style: none;
-  margin-bottom: 10px; /* Espacio entre las pestañas */
+  margin-bottom: 10px;
 }
 
 #tabs a {
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
-  background-color: #9b2dce; 
-  display: block; /* Asegurar que los enlaces ocupen todo el ancho */
+  background-color: var(--color-primary-light);
+  display: block;
 }
 
 #tabs a:hover, #tabs a.active {
-  background-color: #ae41e0; 
+  background-color: var(--color-primary-dark);
 }
 
 .menu-icon {
-  position: fixed; /* Fija el botón en la parte superior */
-  top: 20px; /* Ajusta la distancia desde la parte superior */
-  right: 20px; /* Ajusta la distancia desde la derecha */
+  position: fixed;
+  top: 20px;
+  right: 20px;
   width: 35px;
   height: 30px;
   display: flex;
@@ -125,23 +123,23 @@ header p {
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
-  background-color: #7f00b2; /* Fondo morado */
+  background-color: var(--color-primary-light);
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade una sombra para darle profundidad */
-  z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .menu-icon div {
   width: 100%;
   height: 4px;
-  background-color: white; /* Líneas blancas */
+  background-color: var(--color-white);
   border-radius: 2px;
-  transition: all 0.3s ease; /* Añade una transición suave */
+  transition: all 0.3s ease;
 }
 
 .menu-icon:hover div {
-  background-color: #ae41e0; 
+  background-color: var(--color-primary-dark);
 }
 
 #container {
@@ -149,7 +147,7 @@ header p {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: white;
+  background-color: var(--color-white);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
@@ -170,16 +168,36 @@ header p {
 form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px; /* Espacio entre formularios */
 }
 
-form label, form input, form button {
-  margin-bottom: 10px;
+form label {
+  font-weight: bold;
+}
+
+form input, form textarea, form button {
+  padding: 10px;
+  border: 1px solid var(--color-grey);
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--color-primary-dark);
 }
 
 #home h3 {
   margin-top: 20px;
   font-size: 1.5em;
-  color: #7f00b2; 
+  color: var(--color-primary);
 }
 
 #home ul {
@@ -200,8 +218,8 @@ form label, form input, form button {
 }
 
 footer {
-  background-color: #7f00b2; /* Fondo morado */
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   text-align: center;
   padding: 20px;
   border-radius: 5px;
@@ -216,22 +234,19 @@ footer .contact-info {
 }
 
 footer .social-media a {
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   margin: 0 10px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #9b2dce; 
+  background-color: var(--color-primary-light);
   display: inline-block;
 }
 
 footer .social-media a:hover {
-  background-color: #ae41e0; 
+  background-color: var(--color-primary-dark);
 }
 
-footer .social-media i {
-  margin-right: 5px;
-}
 .category-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -241,8 +256,8 @@ footer .social-media i {
 }
 
 .category-button {
-  background-color: #7f00b2; 
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -251,12 +266,13 @@ footer .social-media i {
 }
 
 .category-button:hover {
-  background-color: #ae41e0;
+  background-color: var(--color-primary-dark);
 }
+
 #contact {
   padding: 30px;
   box-sizing: border-box;
-  overflow: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+  overflow: auto;
 }
 
 #contact-form {
@@ -270,56 +286,6 @@ footer .social-media i {
   font-weight: bold;
 }
 
-#contact-form input,
-#contact-form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%; /* Asegura que los inputs ocupen todo el ancho del contenedor */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
-}
-
-#contact-form button {
-  background-color: #7f00b2; 
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#contact-form button:hover {
-  background-color: #ae41e0; 
-}
-
-/* Estilos para el menú de pestañas en dispositivos móviles */
-@media (max-width: 768px) {
-  #tabs {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #tabs.show {
-    display: flex;
-  }
-
-  #tabs a {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-  }
-}
-/* Mostrar el menú de usuario cuando se active */
-#auth-menu.show {
-  display: block;
-}
-
-/* Mostrar el menú de pestañas en dispositivos móviles cuando se active */
-#tabs.show {
-  display: flex;
-}
 #reviews-list {
   margin-top: 20px;
 }
@@ -336,131 +302,15 @@ footer .social-media i {
   margin-top: 20px;
 }
 
-#review-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-#review-form button {
-  background-color: #7f00b2;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#add-review-button {
-  background-color: #7f00b2;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-#add-review-button:hover {
-  background-color: #ae41e0;
-}
-
 .review strong {
-  color: #7f00b2; /* Color del nombre del usuario */
+  color: var(--color-primary); /* Color del nombre del usuario */
   display: block;
   margin-bottom: 5px;
-}
-#register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-#register-form label {
-  font-weight: bold;
-}
-
-#register-form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#register-form button {
-  background-color: #7f00b2;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#register-form button:hover {
-  background-color: #ae41e0;
-}
-#login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-#login-form label {
-  font-weight: bold;
-}
-
-#login-form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#login-form button {
-  background-color: #7f00b2;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#login-form button:hover {
-  background-color: #ae41e0;
-}
-
-#welcome {
-  text-align: center;
-}
-
-#welcomeMessage {
-  margin-left: 20px;
-  font-size: 16px;
-  font-weight: bold;
-}
-.review {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  background-color: #f9f9f9;
 }
 
 .review button {
   background-color: #ff4d4d;
-  color: white;
+  color: var(--color-white);
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
@@ -470,4 +320,47 @@ footer .social-media i {
 
 .review button:hover {
   background-color: #ff1a1a;
+}
+#add-review-button {
+  background-color: var(--color-primary); 
+  color: var(--color-white);
+  border: none;
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  margin-top: 20px; 
+  font-size: 1em; 
+}
+
+#add-review-button:hover {
+  background-color: var(--color-primary-dark); 
+}
+#users-list {
+  margin-top: 20px;
+}
+
+#users-list table {
+  width: 100%;
+  border-collapse: collapse; /* Asegura que los bordes de las celdas se junten */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor de la tabla */
+}
+
+#users-list th, #users-list td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid var(--color-grey); /* Bordes alrededor de celdas */
+}
+
+#users-list th {
+  background-color: var(--color-primary); /* Fondo para el encabezado */
+  color: var(--color-white); /* Color del texto */
+}
+
+#users-list tr:nth-child(even) {
+  background-color: #f9f9f9; /* Sombreado alternado para filas */
+}
+
+#users-list tr:hover {
+  background-color: #e0e0e0; /* Cambio de color al pasar el ratón */
 }
