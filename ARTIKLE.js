@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const adminPassword = 'admin123'; // Contraseña del administrador
 
   // Comprobar si ya existe un usuario administrador en localStorage
-  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
 
   // Crear el usuario administrador si no existe
-  if (!storedUser || storedUser.username !== adminUsername) {
+  if (!storedUsers.some(user => user.username === adminUsername)) {
     const adminUser = {
       fullname: 'Administrador',
       email: 'admin@example.com',
@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
       password: adminPassword,
       role: 'admin' // Rol de administrador
     };
-    localStorage.setItem('user', JSON.stringify(adminUser));
+    storedUsers.push(adminUser); // Agregar el administrador al array de usuarios
+    localStorage.setItem('users', JSON.stringify(storedUsers));
     console.log('Usuario administrador creado:', adminUser);
   } else {
-    console.log('Usuario ya existe en localStorage:', storedUser);
+    console.log('Usuario administrador ya existe:', storedUsers.find(user => user.username === adminUsername));
   }
 
   // Mostrar/ocultar pestañas en móviles
@@ -73,14 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value.trim();
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const loggedInUser = storedUsers.find(user => user.username === username && user.password === password);
 
-    if (storedUser && storedUser.username === username && storedUser.password === password) {
+    if (loggedInUser) {
       // Guardar en localStorage que el usuario está autenticado
       localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('loggedInUser', storedUser.fullname);
-      localStorage.setItem('loggedInUsername', storedUser.username);
-      localStorage.setItem('userRole', storedUser.role); // Guardar el rol
+      localStorage.setItem('loggedInUser', loggedInUser.fullname);
+      localStorage.setItem('loggedInUsername', loggedInUser.username);
+      localStorage.setItem('userRole', loggedInUser.role); // Guardar el rol
       alert('Inicio de sesión exitoso');
       location.reload(); // Recargar la página para actualizar el estado
     } else {
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    // Guardar el nuevo usuario en localStorage como usuario normal
+    // Guardar el nuevo usuario en el array de usuarios como usuario normal
     const newUser = {
       fullname: fullname,
       email: email,
@@ -116,8 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
       role: 'user' // Por defecto, los nuevos usuarios son normales
     };
 
-    // Guardar en localStorage
-    localStorage.setItem('user', JSON.stringify(newUser));
+    // Obtener los usuarios actuales
+    const currentUsers = JSON.parse(localStorage.getItem('users')) || [];
+    currentUsers.push(newUser); // Agregar el nuevo usuario
+    localStorage.setItem('users', JSON.stringify(currentUsers)); // Guardar en localStorage
+
     alert('Registro exitoso. Por favor, inicia sesión.');
     document.getElementById('register-form').reset();
   });
@@ -138,45 +143,45 @@ document.addEventListener('DOMContentLoaded', function() {
     agregarReseñaAlDOM(review);
   });
 
-  // Cargar noticias
-  cargarNoticias();
-});
+  // Manejar el botón para añadir reseña
+  const addReviewButton = document.getElementById('add-review-button');
+  const reviewFormContainer = document.getElementById('review-form-container');
 
-// Función para cargar noticias
-async function cargarNoticias() {
-  const apiKey = 'YOUR_API_KEY'; // Reemplaza esto con tu clave API
-  const url = `https://newsapi.org/v2/everything?q=hardware&language=es&apiKey=${apiKey}`;
-
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if (data.articles) {
-      mostrarNoticias(data.articles);
-    } else {
-      console.error('No se encontraron artículos');
-    }
-  } catch (error) {
-    console.error('Error al cargar las noticias:', error);
-  }
-}
-
-// Función para mostrar noticias en el DOM
-function mostrarNoticias(articles) {
-  const newsList = document.getElementById('news-list');
-  newsList.innerHTML = ''; // Limpiar la lista antes de agregar nuevas noticias
-
-  articles.forEach(article => {
-    const articleElement = document.createElement('div');
-    articleElement.className = 'news-article';
-    articleElement.innerHTML = `
-      <h3>${article.title}</h3>
-      <p>${article.description}</p>
-      <a href="${article.url}" target="_blank">Leer más</a>
-    `;
-    newsList.appendChild(articleElement);
+  addReviewButton.addEventListener('click', function() {
+    // Alternar la visibilidad del formulario de reseña
+    reviewFormContainer.style.display = reviewFormContainer.style.display === 'none' ? 'block' : 'none';
   });
-}
+
+  // Manejar el envío del formulario de reseñas
+  document.getElementById('review-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evitar el envío normal del formulario
+    const reviewText = document.getElementById('review-text').value; // Obtener el texto de la reseña
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const loggedInUser = localStorage.getItem('loggedInUsername');
+
+    if (reviewText && isLoggedIn === 'true') {
+      const review = {
+        username: loggedInUser,
+        text: reviewText,
+        date: new Date().toISOString()
+      };
+
+      // Obtener las reseñas actuales y agregar la nueva
+      let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+      reviews.push(review);
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+
+      // Añadir la nueva reseña al DOM
+      agregarReseñaAlDOM(review);
+
+      // Limpiar el formulario
+      document.getElementById('review-text').value = '';
+      reviewFormContainer.style.display = 'none'; // Ocultar el formulario de reseñas
+    } else {
+      alert('Debes iniciar sesión para dejar una reseña.');
+    }
+  });
+});
 
 // Función para mostrar la opción "Cerrar sesión"
 function mostrarOpcionCerrarSesion() {
@@ -220,54 +225,51 @@ function agregarReseñaAlDOM(review) {
   const reviewsList = document.getElementById('reviews-list');
   const reviewElement = document.createElement('div');
   reviewElement.className = 'review';
-  reviewElement.innerHTML = `<strong>${review.username}:</strong> ${review.text}`;
-  
-  // Añadir botón de eliminar si el usuario es admin
+  reviewElement.innerHTML = `
+    <div class="review-text">
+      <strong>${review.username}:</strong> ${review.text}
+    </div>
+    <div class="review-date">
+      <small>${new Date(review.date).toLocaleString()}</small>
+    </div>
+  `;
+
+  // Solo mostrar el botón de eliminar si el usuario es administrador
   const userRole = localStorage.getItem('userRole');
   if (userRole === 'admin') {
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Eliminar';
-    deleteButton.className = 'delete-review';
+    deleteButton.innerHTML = '<i class="fas fa-trash"></i>'; // Usar un icono de papelera
     deleteButton.addEventListener('click', function() {
-      eliminarReseña(reviewElement);
+      eliminarResena(review); // Llamar a la función para eliminar la reseña
     });
-    reviewElement.appendChild(deleteButton);
+    reviewElement.appendChild(deleteButton); // Añadir el botón al contenedor de la reseña
   }
 
   reviewsList.appendChild(reviewElement);
 }
 
-// Función para eliminar una reseña
-function eliminarReseña(reviewElement) {
-  const reviewsList = document.getElementById('reviews-list');
-  reviewsList.removeChild(reviewElement);
-  alert('Reseña eliminada.');
-}
+// Función para eliminar reseñas
+function eliminarResena(review) {
+  // Obtener las reseñas actuales
+  let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
 
-// Función para manejar el envío del formulario de reseñas
-document.getElementById('review-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const reviewText = document.getElementById('review-text').value.trim();
-  const username = localStorage.getItem('loggedInUsername');
+  // Filtrar la reseña a eliminar
+  reviews = reviews.filter(r => r.date !== review.date); // Usa un identificador único para eliminar la reseña
 
-  if (!reviewText) {
-    alert('Por favor, escribe una reseña.');
-    return;
-  }
-
-  const newReview = {
-    username: username,
-    text: reviewText
-  };
-
-  // Agregar la nueva reseña al DOM
-  agregarReseñaAlDOM(newReview);
-
-  // Guardar la reseña en localStorage
-  const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-  reviews.push(newReview);
+  // Guardar la lista actualizada en localStorage
   localStorage.setItem('reviews', JSON.stringify(reviews));
 
-  // Limpiar el formulario
-  document.getElementById('review-form').reset();
-});
+  // Recargar las reseñas en el DOM
+  cargarReseñasDesdeLocalStorage();
+}
+
+// Función para cargar reseñas desde localStorage
+function cargarReseñasDesdeLocalStorage() {
+  const reviewsList = document.getElementById('reviews-list');
+  reviewsList.innerHTML = ''; // Limpiar la lista antes de agregar nuevas reseñas
+
+  const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  reviews.forEach(review => {
+    agregarReseñaAlDOM(review);
+  });
+}
