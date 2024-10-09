@@ -43,9 +43,8 @@
     <div class="content show" id="home">
       <h2>Inicio</h2>
       <img src="BANER.jpg" alt="Imagen de Inicio">
-      
-      <p id="welcome-text">Bienvenido a ARTIKLE STORE. Aquí encontrarás los mejores productos y asesorías en tecnología.</p>
-      <h3 id="welcome-title">LOS COMPONENTES QUE NUNCA DEBES OLVIDAR AL ARMAR TU PRIMER COMPUTADOR</h3>
+      <p>Bienvenido a ARTIKLE STORE. Aquí encontrarás los mejores productos y asesorías en tecnología.</p>
+      <h3>LOS COMPONENTES QUE NUNCA DEBES OLVIDAR AL ARMAR TU PRIMER COMPUTADOR</h3>
       <ul>
         <li><strong>CPU:</strong> Son los cerebros del computador, responsables de ejecutar instrucciones y procesar datos.</li>
         <li><strong>GPU:</strong> Estas tarjetas gráficas se encargan de renderizar imágenes y videos.</li>
@@ -71,6 +70,31 @@
           <button type="submit">Enviar</button>
         </form>
       </div>
+    </div>
+
+    <!-- Sección de categorías -->
+    <div class="content" id="categories">
+      <h2>Categorías</h2>
+      <div class="category-buttons">
+        <button class="category-button" data-image="CPU.jpg">CPU</button>
+        <button class="category-button" data-image="GPU.jpg">GPU</button>
+        <button class="category-button" data-image="RAM.jpg">RAM</button>
+        <button class="category-button" data-image="PLACA.jpg">Placa Base</button>
+        <button class="category-button" data-image="ALMACENAMIENTO.jpg">Almacenamiento</button>
+        <button class="category-button" data-image="FUENTE.jpg">Fuente de Alimentación</button>
+        <button class="category-button" data-image="ENFRIAMIENTO.jpg">Sistema de Enfriamiento</button>
+        <button class="category-button" data-image="CAJA.jpg">Caja</button>
+        <button class="category-button" data-image="MONITOR.jpg">Monitor</button>
+        <button class="category-button" data-image="TECLADO.jpg">Teclado</button>
+        <button class="category-button" data-image="RATÓN.jpg">Ratón</button>
+      </div>
+    </div>
+
+    <!-- Modal para mostrar la imagen -->
+    <div id="imageModal" class="modal">
+      <span class="close" id="closeModal">&times;</span>
+      <img class="modal-content" id="modalImage" alt="Imagen de categoría">
+      <div id="caption"></div>
     </div>
 
     <!-- Sección de registro -->
@@ -103,24 +127,6 @@
       </form>
     </div>
     
-    <!-- Sección de categorías -->
-    <div class="content" id="categories">
-      <h2>Categorías</h2>
-      <div class="category-buttons">
-        <button class="category-button">CPU</button>
-        <button class="category-button">GPU</button>
-        <button class="category-button">RAM</button>
-        <button class="category-button">Placa Base</button>
-        <button class="category-button">Almacenamiento</button>
-        <button class="category-button">Fuente de Alimentación</button>
-        <button class="category-button">Sistema de Enfriamiento</button>
-        <button class="category-button">Caja</button>
-        <button class="category-button">Monitor</button>
-        <button class="category-button">Teclado</button>
-        <button class="category-button">Ratón</button>
-      </div>
-    </div>
-
     <!-- Sección de contacto -->
     <div id="contact" class="content">
       <h2>Contacto</h2>
@@ -133,7 +139,6 @@
         <input type="tel" id="phone" name="phone" required>
         <label for="message">Mensaje:</label>
         <textarea id="message" name="message" rows="4" required></textarea>
-        
         <button type="submit">Enviar</button>
       </form>
     </div>

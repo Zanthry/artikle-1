@@ -344,3 +344,31 @@ function cargarReseñasDesdeLocalStorage() {
     agregarReseñaAlDOM(review);
   });
 }
+
+// Lógica para el modal de imágenes de categoría
+const categoryButtons = document.querySelectorAll('.category-button');
+const modal = document.getElementById('imageModal');
+const modalImage = document.getElementById('modalImage');
+const captionText = document.getElementById('caption');
+const closeModal = document.getElementById('closeModal');
+
+categoryButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const imageSrc = this.getAttribute('data-image');
+    modal.style.display = "block";
+    modalImage.src = imageSrc;
+    captionText.innerHTML = this.textContent; // Título de la imagen
+  });
+});
+
+// Cerrar el modal
+closeModal.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cerrar el modal al hacer clic fuera de la imagen
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
